@@ -6,6 +6,7 @@ let messageQueue = []; // Cola de mensajes pendientes de mostrar en la Caja 3
 let currentSource = ''; // Origen del mensaje actual en la Caja 3
 let currentPairIndex = 0; // Índice de la pareja de chat activa
 let pairCount = 0; // Conteo de parejas de chat, comenzando desde la #001
+let originPairIndex = null; // Índice de la pareja de chat cuando el mensaje entra en la caja 3
 
 // Almacenamiento de mensajes para cada pareja de chat
 let chatsData = []; // Inicialmente vacío
@@ -142,7 +143,7 @@ function addChatPair() {
             messageQueue.shift();
             updateWaitingList();
             chatBox3.textContent = '';
-            chatBox3.style.backgroundColor = 'white';
+            chatBox3.style.backgroundColor = '#2c2c3a'; // Fondo oscuro de la caja 3
             editButton.disabled = true;
             showMessageInBox3();
         }
@@ -215,7 +216,8 @@ function showMessageInBox3() {
     const countdownDisplay = document.getElementById(`countdown-pair-${currentPairIndex}`);
 
     if (editMode || messageQueue.length === 0) {
-        chatBox3.style.backgroundColor = 'white';
+        chatBox3.style.backgroundColor = '#2c2c3a'; // Fondo oscuro de la caja 3
+
         editButton.disabled = true;
         countdownDisplay.textContent = '';
         clearInterval(countdownId);
@@ -223,10 +225,11 @@ function showMessageInBox3() {
     }
 
     const messageData = messageQueue[0];
+    originPairIndex = messageData.pairIndex; // Guardar el índice de la pareja de chat original
     currentSource = messageData.source;
-    currentPairIndex = messageData.pairIndex;
     chatBox3.textContent = messageData.text;
-    chatBox3.style.backgroundColor = 'white';
+    chatBox3.style.backgroundColor = '#2c2c3a'; // Fondo oscuro de la caja 3
+
     editButton.disabled = false;
     editButton.textContent = "Editar mensaje";
 
@@ -237,11 +240,11 @@ function showMessageInBox3() {
         countdownDisplay.textContent = countdown;
         if (countdown === 0) {
             clearInterval(countdownId);
-            sendToChatFromBox3(currentPairIndex, currentSource, messageData.text);
+            sendToChatFromBox3(originPairIndex, currentSource, messageData.text); // Usar originPairIndex
             messageQueue.shift();
             updateWaitingList();
             chatBox3.textContent = '';
-            chatBox3.style.backgroundColor = 'white';
+            chatBox3.style.backgroundColor = '#2c2c3a'; // Fondo oscuro de la caja 3
             editButton.disabled = true;
             showMessageInBox3();
         }
@@ -420,3 +423,4 @@ function filterChatPairs() {
         }
     });
 }
+

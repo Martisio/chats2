@@ -1,3 +1,4 @@
+/* Estilo general del cuerpo */
 body {
     font-family: Arial, sans-serif;
     display: flex;
@@ -5,29 +6,33 @@ body {
     align-items: center;
     height: 100vh;
     margin: 0;
-    background-color: #e0e0e0; /* Fondo gris claro */
+    background-color: #1e1e2f; /* Fondo oscuro */
+    color: #e0e0e0; /* Color de texto claro */
 }
 
+/* Contenedor de la aplicación */
 .app-container {
     display: flex;
-    align-items: center; /* Alinea el botón de Añadir Pareja debajo de la lista */
+    align-items: center;
+    gap: 20px;
 }
 
 /* Estilo para la lista de parejas de chat */
 .chat-list {
-    width: 150px;
-    background-color: #f4f4f4;
-    padding: 10px;
-    border-right: 1px solid #ddd;
-    height: 50vh; /* Altura fija */
-    overflow-y: auto; /* Desplazamiento cuando hay muchas parejas */
+    width: 200px;
+    background-color: #2a2a3a; /* Fondo más oscuro */
+    padding: 15px;
+    border-right: 1px solid #444; /* Borde de separación */
+    height: 60vh; /* Altura más corta */
+    overflow-y: auto;
     display: flex;
     flex-direction: column;
-    align-items: center; /* Centra el contenido dentro de chat-list */
+    align-items: center;
 }
 
 .chat-list h2 {
     font-size: 1.2em;
+    color: #ffffff; /* Color blanco */
     margin-bottom: 10px;
 }
 
@@ -36,41 +41,66 @@ body {
     padding: 10px;
     margin-bottom: 5px;
     border: none;
-    background-color: #ddd;
+    background-color: #3a3a4e; /* Fondo de botón en gris oscuro */
+    color: #e0e0e0;
     cursor: pointer;
     font-size: 1em;
     text-align: left;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
 }
 
 .chat-list button.selected {
-    background-color: #aaa;
-    color: #fff;
+    background-color: #565678;
+    color: #ffffff;
     font-weight: bold;
 }
 
 .chat-list button:hover {
-    background-color: #ccc;
+    background-color: #4a4a5e;
 }
 
-/* Botón Añadir Pareja */
-.add-chat-pair-button,
-.delete-chat-pair-button {
-    width: 150px;
-    padding: 10px;
+/* Campo de búsqueda */
+#searchInput {
+    width: 90%;
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #555;
+    border-radius: 5px;
+    background-color: #3a3a4e;
+    color: #ffffff;
     font-size: 1em;
 }
 
-.add-chat-pair-button {
-    background-color: #4CAF50;
-    color: white;
+/* Botones principales */
+.add-chat-pair-button,
+.delete-chat-pair-button {
+    width: 180px;
+    padding: 10px;
+    font-size: 1em;
     border: none;
+    border-radius: 5px;
     cursor: pointer;
+    color: #ffffff;
+}
+
+.add-chat-pair-button {
+    background-color: #38723a
 }
 
 .add-chat-pair-button:hover {
     background-color: #45a049;
 }
 
+.delete-chat-pair-button {
+    background-color: #a24338;
+}
+
+.delete-chat-pair-button:hover {
+    background-color: #c0392b;
+}
+
+/* Contenedores de chat */
 .chat-container {
     display: flex;
     gap: 20px;
@@ -87,131 +117,125 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 150px;
+    width: 180px;
 }
 
+/* Títulos de chat */
 .chat-title {
     width: 100%;
     text-align: center;
     font-weight: bold;
-    margin-bottom: 5px;
+    margin-bottom: 10px;
+    background-color: #3a3a4e;
+    color: #ffffff;
+    padding: 5px 0;
+    border-radius: 5px;
 }
 
+/* Caja de espera */
 .waiting-list {
-    width: 150px;
+    width: 180px;
     min-height: 20px;
     text-align: center;
     font-size: 0.9em;
-    color: #555;
+    color: #b0b0c3;
     margin-bottom: 5px;
 }
 
-/* Estilos específicos para las cajas de chat principales */
-.chat-box-1,
-.chat-box-2 {
+/* Estilos específicos para las cajas de chat */
+.chat-box {
     width: 300px;
     height: 300px;
-    border: 1px solid #ddd;
+    border: 1px solid #555;
     border-radius: 5px;
     padding: 10px;
     overflow-y: auto;
-    background-color: white;
+    background-color: #2c2c3a;
     display: flex;
-    flex-direction: column-reverse; /* Para que los mensajes se muestren desde abajo hacia arriba */
-    position: relative; /* Necesario para que el .typing-indicator se posicione respecto a .chat-box */
+    flex-direction: column-reverse;
+    position: relative;
     margin-bottom: 10px;
+    color: #e0e0e0;
 }
 
-/* Estilos originales para .chat-box-3 */
+/* Estilo de la caja 3 */
 .chat-box-3 {
-    width: 150px;
+    width: 180px;
     height: 60px;
     text-align: center;
     display: flex;
     align-items: center;
     justify-content: center;
-    border: 1px solid #ddd;
+    border: 1px solid #555; /* Borde similar al de otras cajas */
     border-radius: 5px;
-    background-color: white;
+    background-color: #2c2c3a; /* Fondo oscuro */
+    color: #e0e0e0; /* Texto claro */
 }
 
-
-.chat-box {
-    width: 300px;
-    height: 300px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    padding: 10px;
-    overflow-y: auto;
-    background-color: white;
-    display: flex;
-    flex-direction: column-reverse; /* Para que los mensajes se muestren desde abajo hacia arriba */
-    position: relative; /* Necesario para que el .typing-indicator se posicione respecto a .chat-box */
-    margin-bottom: 10px;
-}
-
-/* Centrado del contenedor de botones */
+/* Contenedor de botones */
 .button-container {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 10px; /* Espacio entre los botones */
+    gap: 10px;
 }
 
+/* Temporizador de cuenta regresiva */
 span.countdown {
     font-size: 0.9em;
-    color: #555;
+    color: #ffcc00;
     margin-left: 10px;
 }
 
+/* Botón de icono */
 .icon-button {
     background: none;
     border: none;
     cursor: pointer;
     font-size: 1.2em;
     margin-top: 5px;
+    color: #e0e0e0;
 }
 
 .icon-button.tachado {
     text-decoration: line-through;
 }
 
+/* Estilos de mensajes */
 .message-left-blue {
-    background-color: #add8e6;
-    padding: 5px 10px;
+    background-color: #3a3a4e;
+    padding: 8px 12px;
     border-radius: 10px;
     margin: 5px;
     text-align: left;
     align-self: flex-start;
     max-width: 80%;
+    color: #e0e0e0;
 }
 
 .message-right-green {
-    background-color: #e1ffc7;
-    padding: 5px 10px;
+    background-color: #4b6e4f;
+    padding: 8px 12px;
     border-radius: 10px;
     margin: 5px;
     text-align: right;
     align-self: flex-end;
     max-width: 80%;
+    color: #ffffff;
 }
 
+/* Input de texto */
 input[type="text"] {
     width: calc(100% - 70px);
     padding: 5px;
     margin: 5px 0;
+    border: 1px solid #555;
+    border-radius: 5px;
+    background-color: #3a3a4e;
+    color: transparent; /* Hace que el texto sea invisible */
 }
 
-/* Clase para el texto invisible en las cajas de entrada */
-.invisible-input {
-    color: white;
-    background-color: white;
-}
-
-button {
-    padding: 5px 10px;
-}
-
+/* Botón de vinculación */
 .link-button {
     background-color: #3498db;
     color: white;
@@ -219,20 +243,14 @@ button {
     padding: 5px;
     cursor: pointer;
     margin-bottom: 5px;
+    border-radius: 3px;
 }
 
 .link-button:hover {
     background-color: #2980b9;
 }
 
-.link-box {
-    width: calc(100% - 10px);
-    padding: 5px;
-    margin-bottom: 10px;
-    border: 1px solid #ddd;
-    border-radius: 3px;
-    font-size: 0.9em;
-}
+/* Contenedores de enlaces */
 .link-options p {
     margin: 0;
     font-weight: bold;
@@ -258,17 +276,21 @@ button {
     width: calc(100% - 10px);
     padding: 5px;
     margin-bottom: 10px;
-    border: 1px solid #ddd;
+    border: 1px solid #555;
     border-radius: 3px;
     font-size: 0.9em;
+    background-color: #3a3a4e;
+    color: #ffffff;
 }
 
 .link-message {
     font-size: 0.9em;
     font-weight: bold;
-    color: #555;
+    color: #b0b0c3;
     margin-top: 5px;
 }
+
+/* Input de enlace */
 .link-input-container {
     display: flex;
     align-items: center;
@@ -277,7 +299,7 @@ button {
 }
 
 .link-submit-button {
-    background-color: #4CAF50;
+    background-color: #38723a;
     color: white;
     border: none;
     padding: 5px 10px;
@@ -290,46 +312,31 @@ button {
     background-color: #45a049;
 }
 
-.invisible-input {
-    color: transparent; /* Hace que el texto sea invisible */
-    caret-color: transparent; /* Muestra el cursor negro para que el usuario sepa dónde está escribiendo */
-}
-
+/* Indicador de escritura */
 .typing-indicator {
     font-style: italic;
-    font-weight: bold;
-    color: #555;
-    font-size: 0.8em; /* Tamaño de letra más pequeño */
-    opacity: 0; /* Invisible por defecto */
-    transition: opacity 0.3s ease; /* Efecto de transición para visibilidad */
+    color: #b0b0c3;
+    font-size: 0.7em;
+    opacity: 0;
+    transition: opacity 0.3s ease;
     position: absolute;
-    bottom: 0px; /* Posición fija en la parte inferior del chat */
-    left: 10px; /* Un pequeño margen a la izquierda */
+    bottom: 0px;
+    left: 10px;
 }
 
 .message-input:focus {
-    outline: none; /* Quita el borde de resaltado */
-    box-shadow: none; /* Quita cualquier sombra que indique selección */
+    outline: none;
+    box-shadow: none;
 }
 
-.delete-chat-pair-button {
-    background-color: #e74c3c;
-    color: white;
-    border: none;
-    cursor: pointer;
-}
-
-.delete-chat-pair-button:hover {
-    background-color: #c0392b;
-}
-
+/* Caja de confirmación de eliminación */
 .confirmation-overlay {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.5); /* Fondo oscuro semi-transparente */
+    background-color: rgba(0, 0, 0, 0.5);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -337,18 +344,15 @@ button {
 }
 
 .confirmation-box {
-    background-color: white;
+    background-color: #2c2c3a;
     padding: 20px;
     border-radius: 5px;
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
     text-align: center;
+    color: #e0e0e0;
 }
 
-.confirmation-box p {
-    font-size: 1em;
-    margin-bottom: 20px;
-}
-
+/* Botones de confirmación */
 .confirm-delete-button,
 .cancel-delete-button {
     padding: 10px 15px;
@@ -356,38 +360,85 @@ button {
     border: none;
     cursor: pointer;
     font-size: 0.9em;
+    border-radius: 3px;
 }
 
 .confirm-delete-button {
-    background-color: #e74c3c; /* Rojo para confirmar eliminación */
+    background-color: #e74c3c;
     color: white;
 }
 
 .cancel-delete-button {
-    background-color: #ccc; /* Gris para cancelar */
+    background-color: #ccc;
     color: black;
 }
 
 .confirm-delete-button:hover {
-    background-color: #c0392b; /* Rojo oscuro al pasar el cursor */
+    background-color: #c0392b;
 }
 
 .cancel-delete-button:hover {
-    background-color: #aaa; /* Gris más oscuro al pasar el cursor */
+    background-color: #aaa;
 }
 
-.disabled-chat-button {
-    background-color: #e74c3c; /* Fondo rojo para indicar que está eliminado */
-    color:#e74c3c;
-    cursor: not-allowed; /* Cambia el cursor para mostrar que no es interactivo */
-    opacity: 0.7;
+/* Asegura que el contenedor principal ocupe toda la altura de la pantalla */
+.app-container {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    overflow-x: auto; /* Permite el desplazamiento horizontal */
+    overflow-y: hidden; /* Oculta cualquier desplazamiento vertical */
+    max-width: 100vw;
+    height: 100vh; /* Ocupa toda la altura de la ventana */
+    padding: 10px;
+    box-sizing: border-box;
 }
 
-#searchInput {
-    width: 80%;
-    padding: 8px;
-    margin-bottom: 10px;
-    border: 1px solid #ddd;
-    border-radius: 3px;
-    font-size: 1em;
+/* Ajustes para la columna de parejas de chat */
+.chat-list {
+    width: 200px;
+    min-width: 200px;
+    background-color: #2a2a3a;
+    padding: 15px;
+    border-right: 1px solid #444;
+    height: 60vh;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Ajustes en pantallas pequeñas */
+@media (max-width: 768px) {
+    .app-container {
+        flex-wrap: nowrap;
+    }
+    .chat-list {
+        width: 180px;
+    }
+}
+
+/* Estilos para la barra de desplazamiento en navegadores WebKit (Chrome, Safari, Edge) */
+.app-container::-webkit-scrollbar,
+.chat-list::-webkit-scrollbar {
+    height: 8px; /* Ancho de la barra horizontal */
+    width: 8px; /* Ancho de la barra vertical en columnas con desplazamiento */
+}
+
+.app-container::-webkit-scrollbar-track,
+.chat-list::-webkit-scrollbar-track {
+    background: #1e1e2f; /* Color de fondo de la barra de desplazamiento */
+}
+
+.app-container::-webkit-scrollbar-thumb,
+.chat-list::-webkit-scrollbar-thumb {
+    background-color: #444; /* Color del "thumb" (parte móvil) */
+    border-radius: 4px; /* Bordes redondeados para un estilo moderno */
+}
+
+/* Para otros navegadores que soportan scrollbar-width y scrollbar-color */
+.app-container,
+.chat-list {
+    scrollbar-width: thin; /* Grosor de la barra */
+    scrollbar-color: #444 #1e1e2f; /* Color del "thumb" y del fondo */
 }
