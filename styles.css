@@ -34,6 +34,7 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
+    overflow-x: hidden;
 }
 
 .sidebar {
@@ -48,9 +49,9 @@ body {
     position: sticky;
     top: 0;
     background-color: #2a2a3a;
-    padding: 9px 0; /* Ajusta el padding vertical */
+    padding: 9.4px 0; /* Ajusta el padding vertical */
     margin: 0;
-    width: 180px;
+    width: 190px;
     text-align: center;
     font-size: 1.2em; /* Ajusta el tamaño de fuente */
     font-weight: bold;

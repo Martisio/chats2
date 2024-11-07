@@ -27,30 +27,22 @@ function switchChat(pairIndex) {
         button.classList.toggle('selected', index === pairIndex);
     });
 
-    // Desplazamiento condicional del botón seleccionado
+    // Desplazamiento dinámico del botón seleccionado para mantenerlo lo más cerca posible del centro
     const selectedButton = chatButtons[pairIndex];
     const chatList = document.querySelector('.chat-list');
     const chatListHeight = chatList.offsetHeight;
     const buttonHeight = selectedButton.offsetHeight;
-    const buttonTop = selectedButton.offsetTop;
+    const buttonTop = selectedButton.offsetTop - chatList.scrollTop;
+
+    // Calcula cuántos botones caben en la vista y determina si debe centrarse
     const visibleButtonsCount = Math.floor(chatListHeight / buttonHeight);
-    
-    // Condición para centrar, o ajustar hacia el centro al principio/final de la lista
     const isNearStart = pairIndex < Math.floor(visibleButtonsCount / 2);
     const isNearEnd = pairIndex >= chatButtons.length - Math.ceil(visibleButtonsCount / 2);
 
-    if (isNearStart) {
-        // Desplaza al inicio si está cerca del principio
-        selectedButton.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    } else if (isNearEnd) {
-        // Desplaza al final si está cerca del final
-        selectedButton.scrollIntoView({ behavior: 'smooth', block: 'end' });
-    } else {
-        // Centra el botón si no está ni al principio ni al final
-        selectedButton.scrollIntoView({ behavior: 'smooth', block: 'center' });
-    }
+    // Ajusta la vista según la posición del botón en la lista
+    selectedButton.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    
 }
-
 
 
 // Función para crear una nueva pareja de chat
