@@ -14,17 +14,44 @@ let chatsData = []; // Inicialmente vacío
 // Función para cambiar de pareja de chat
 function switchChat(pairIndex) {
     const chatContainers = document.querySelectorAll('.chat-container');
+    const chatButtons = document.querySelectorAll('.chat-list button');
+    
+    // Muestra el contenedor del chat seleccionado y oculta los demás
     chatContainers.forEach((container, index) => {
         container.style.display = (index === pairIndex) ? 'flex' : 'none';
     });
-    currentPairIndex = pairIndex; // Actualizar la pareja de chat activa
+    currentPairIndex = pairIndex; // Actualiza el índice de la pareja seleccionada
 
-    // Resaltar la pareja de chat seleccionada en la lista
-    const chatButtons = document.querySelectorAll('.chat-list button');
+    // Resalta la pareja de chat seleccionada en la lista
     chatButtons.forEach((button, index) => {
         button.classList.toggle('selected', index === pairIndex);
     });
+
+    // Desplazamiento condicional del botón seleccionado
+    const selectedButton = chatButtons[pairIndex];
+    const chatList = document.querySelector('.chat-list');
+    const chatListHeight = chatList.offsetHeight;
+    const buttonHeight = selectedButton.offsetHeight;
+    const buttonTop = selectedButton.offsetTop;
+    const visibleButtonsCount = Math.floor(chatListHeight / buttonHeight);
+    
+    // Condición para centrar, o ajustar hacia el centro al principio/final de la lista
+    const isNearStart = pairIndex < Math.floor(visibleButtonsCount / 2);
+    const isNearEnd = pairIndex >= chatButtons.length - Math.ceil(visibleButtonsCount / 2);
+
+    if (isNearStart) {
+        // Desplaza al inicio si está cerca del principio
+        selectedButton.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    } else if (isNearEnd) {
+        // Desplaza al final si está cerca del final
+        selectedButton.scrollIntoView({ behavior: 'smooth', block: 'end' });
+    } else {
+        // Centra el botón si no está ni al principio ni al final
+        selectedButton.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
 }
+
+
 
 // Función para crear una nueva pareja de chat
 function addChatPair() {
@@ -53,16 +80,16 @@ function addChatPair() {
             <div class="chat-box" id="chat-box-1-pair-${newPairIndex}">
                 <div class="typing-indicator" id="typing-indicator-1-pair-${newPairIndex}"></div>
             </div>
-            <input type="text" class="message-input invisible-input" id="message-input-1-pair-${newPairIndex}" spellcheck="false">
+            <input type="text" class="message-input" id="message-input-1-pair-${newPairIndex}" spellcheck="false">
             <button onclick="sendMessageFromBox('box1')">Enviar mensaje</button>
         </div>
         <div class="chat-section center-section">
             <div id="waiting-list-pair-${newPairIndex}" class="waiting-list"></div>
             <div class="chat-box-3" id="chat-box-3-pair-${newPairIndex}"></div>
-            <div class="button-container">
+            <div class="center-button-container">
                 <button class="edit-button" id="edit-button-pair-${newPairIndex}" disabled>Editar mensaje</button>
-                <span id="countdown-pair-${newPairIndex}" class="countdown"></span>
                 <button id="mute-button-pair-${newPairIndex}" class="icon-button" onclick="toggleMute(this)">🔊</button>
+                <span id="countdown-pair-${newPairIndex}" class="countdown"></span>
             </div>
         </div>
         <div class="chat-section">
@@ -81,7 +108,7 @@ function addChatPair() {
             <div class="chat-box" id="chat-box-2-pair-${newPairIndex}">
                 <div class="typing-indicator" id="typing-indicator-2-pair-${newPairIndex}"></div>
             </div>
-            <input type="text" class="message-input invisible-input" id="message-input-2-pair-${newPairIndex}" spellcheck="false">
+            <input type="text" class="message-input" id="message-input-2-pair-${newPairIndex}" spellcheck="false">
             <button onclick="sendMessageFromBox('box2')">Enviar mensaje</button>
         </div>
     `;
@@ -152,6 +179,7 @@ function addChatPair() {
     // Cambiar automáticamente a la nueva pareja creada
     switchChat(newPairIndex);
 }
+
 
 // Función para mostrar el indicador de escritura
 let typingTimeouts = {};
@@ -276,11 +304,10 @@ function updateWaitingList() {
     waitingList.innerHTML = messageQueue.slice(1).map(msg => msg.text).join('<br>');
 }
 
-// Función para alternar el estado del botón de "altavoz"
 function toggleMute(button) {
-    button.classList.toggle("tachado"); // Añadir o quitar clase "tachado"
-    button.textContent = button.classList.contains("tachado") ? "🔇" : "🔊"; // Cambiar icono
+    button.classList.toggle("mute");
 }
+
 function showLinkInput(pairIndex, chatNumber, linkType) {
     // Ocultar las opciones de vinculación
     const linkOptions = document.getElementById(`link-options-${chatNumber}-pair-${pairIndex}`);
